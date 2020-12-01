@@ -47,7 +47,6 @@ class CharacterDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_character_detail, container, false)
-        // TODO Récupérer les informations depuis la liste des personnages
         characterId = args.characterId
         characterName = args.characterName
         characterImage = args.characterUrlImg

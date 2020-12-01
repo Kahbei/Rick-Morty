@@ -38,7 +38,6 @@ class CharactersFragment : Fragment() {
                 is CharactersState.Succeed -> {
                     characterAdapter.updateCharacters(state.characters)
                     loadingMore.visibility = View.GONE
-                    // TODO Cacher l'indicateur de chargement
                     loading.visibility = View.GONE
                 }
                 is CharactersState.Loading -> {
