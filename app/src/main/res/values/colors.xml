@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#00796B</color>
+
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorAccent">#FFEB3B</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="statusUnknown">#9E9E9E</color>
+    <color name="statusAlive">#54CC44</color>
+    <color name="statusDead">#D53D2E</color>
+</resources>

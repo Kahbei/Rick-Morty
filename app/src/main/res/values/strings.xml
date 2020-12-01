@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">RickAndMorty</string>
+    <string name="title_characters">Characters</string>
+    <string name="title_character">Character detail</string>
+    <string name="title_episodes">Episodes</string>
+    <string name="title_episode">Episode detail</string>
+    <string name="title_about">About</string>
+    <string name="character_status_species">%1$s - %2$s</string>
+    <string name="character_origine">From: %1$s</string>
+    <string name="character_last_known_location_label">Last known location:</string>
+    <string name="character_first_seen_label">First seen in:</string>
+    <string name="character_first_seen">%1$s (%2$s)</string>
+    <string name="about_api">The project use Rick and Morty API by <a href="https://axelfuhrmann.com/">Axel Fuhrmann</a>\nAbout API, the official documentation is <a href="https://rickandmortyapi.com/documentation/">here</a></string>
+    <string name="about_copyright">Rick and Morty is created by Justin Roiland and Dan Harmon for Adult Swim.\nThe data and images are used without claim of ownership and belong to their respective owners.</string>
+    <string name="episode_air_date_label">Aired at:</string>
+    <string name="episode_list_character">Characters present:</string>
+</resources>
