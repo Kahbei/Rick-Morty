@@ -9,7 +9,8 @@ data class EpisodeDetailItem(
     val id: Int,
     val episode_num: String,
     val episode_name: String,
-    val air_date: Date?
+    val air_date: Date?,
+    val isFavorite: Boolean
 )
 
 fun Date.toEpisodeDate(): String {
@@ -17,12 +18,13 @@ fun Date.toEpisodeDate(): String {
     return format.format(this)
 }
 
-fun EpisodeModel.toItem() =
+fun EpisodeModel.toItem(isFavorite: Boolean) =
     EpisodeDetailItem(
         id = id,
         episode_num = episode,
         episode_name = name,
-        air_date = air_date?.toDate()
+        air_date = air_date?.toDate(),
+        isFavorite = isFavorite
     )
 
 private fun String.toDate(): Date? {

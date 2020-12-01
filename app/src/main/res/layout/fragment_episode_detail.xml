@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:transitionName="episodeName"
             android:textAppearance="@style/TextAppearance.Episode.Title"
+            android:transitionName="episodeName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,10 +34,10 @@
             android:paddingHorizontal="6dp"
             android:paddingVertical="4dp"
             android:textAllCaps="true"
-            android:transitionName="SXXEXX"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/statusUnknown"
             android:textStyle="bold"
+            android:transitionName="SXXEXX"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEpisodeName"
@@ -96,12 +96,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtAirDate" />
 
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/episode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
             app:constraint_referenced_ids="txtEpisodeName, txtEpisodeNumber, separator, txtAirDateLabel, txtAirDate, txtCharacterListLabel" />
+
+        <com.sackcentury.shinebuttonlib.ShineButton
+            android:id="@+id/siFavorite"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="303dp"
+            android:src="@android:color/darker_gray"
+            app:allow_random_color="true"
+            app:btn_color="@android:color/darker_gray"
+            app:btn_fill_color="#F44336"
+            app:layout_constraintBottom_toBottomOf="@+id/txtName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtEpisodeNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtEpisodeNumber"
+            app:siShape="@raw/heart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -24,8 +24,6 @@ class CharactersViewModel : ViewModel() {
 
     private fun load() = viewModelScope.launch(Dispatchers.Main) {
         _state.value = CharactersState.Loading
-        // TODO Utiliser l'API `rickAndMortyService.characters(page)` pour récupérer les personnages
-
         _state.value = when(val result = rickAndMortyService.characters(currentPage)) {
             is NetworkResponse.Success -> CharactersState.Succeed(characters = result.body.results)
             else -> CharactersState.Failed(error = "Echec au chargement des données")

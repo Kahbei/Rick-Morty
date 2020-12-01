@@ -14,12 +14,14 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.rickandmorty.R
 import com.rickandmorty.data.PreferenceRepository
+import com.rickandmorty.data.episodesPreference
 import com.rickandmorty.ui.episodes.detail.model.EpisodeDetailItem
 import com.rickandmorty.ui.episodes.detail.model.toEpisodeDate
+import com.sackcentury.shinebuttonlib.ShineButton
 
 class EpisodeDetailFragment: Fragment() {
     private val episodeDetailViewModel: EpisodeDetailViewModel by viewModels {
-        EpisodeDetailViewModelFactory(PreferenceRepository(requireContext()))
+        EpisodeDetailViewModelFactory(episodesPreference(requireContext()))
     }
     private var episodeId = 1
     private var episodeNum = ""
@@ -73,6 +75,12 @@ class EpisodeDetailFragment: Fragment() {
 
     private fun populate(episodeDetail: EpisodeDetailItem, view: View) {
         view.findViewById<TextView>(R.id.txtAirDate).text = episodeDetail.air_date?.toEpisodeDate()
+        view.findViewById<ShineButton>(R.id.siFavorite).apply {
+            setOnClickListener {
+                episodeDetailViewModel.favorite(episodeDetail.id, !episodeDetail.isFavorite)
+            }
+            isChecked = episodeDetail.isFavorite
+        }
     }
 
     private fun loadDefaultValues(view: View) {
