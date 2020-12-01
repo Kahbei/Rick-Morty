@@ -17,6 +17,7 @@ class CharactersViewModel : ViewModel() {
     private var currentPage = 1
     private val _state: MutableLiveData<CharactersState> = MutableLiveData(CharactersState.Loading)
     val state: LiveData<CharactersState> = _state
+    private var maxPages = 1
 
     init {
         load()
@@ -24,10 +25,11 @@ class CharactersViewModel : ViewModel() {
 
     private fun load() = viewModelScope.launch(Dispatchers.Main) {
         _state.value = CharactersState.Loading
-        // TODO Utiliser l'API `rickAndMortyService.characters(page)` pour récupérer les personnages
-
         _state.value = when(val result = rickAndMortyService.characters(currentPage)) {
+
             is NetworkResponse.Success -> CharactersState.Succeed(characters = result.body.results)
+
+                .also { maxPages = result.body.info.pages }
             else -> CharactersState.Failed(error = "Echec au chargement des données")
         }
     }
@@ -35,12 +37,14 @@ class CharactersViewModel : ViewModel() {
     fun loadMore() = viewModelScope.launch(Dispatchers.Main) {
         val page = currentPage + 1
         val currentState = _state.value
-        if (currentState is CharactersState.Succeed) {
-            _state.value = CharactersState.LoadingMore(currentState.characters)
-            _state.value = when (val result = rickAndMortyService.characters(page)) {
-                is NetworkResponse.Success -> CharactersState.Succeed(characters = currentState.characters + result.body.results)
-                    .also { currentPage = page }
-                else -> CharactersState.Failed(error = "Echec au chargement des données.")
+        if (maxPages+1 > page) {
+            if (currentState is CharactersState.Succeed) {
+                _state.value = CharactersState.LoadingMore(currentState.characters)
+                _state.value = when (val result = rickAndMortyService.characters(page)) {
+                    is NetworkResponse.Success -> CharactersState.Succeed(characters = currentState.characters + result.body.results)
+                        .also { currentPage = page }
+                    else -> CharactersState.Failed(error = "Echec au chargement des données.")
+                }
             }
         }
     }

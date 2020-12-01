@@ -17,6 +17,8 @@ class EpisodesViewModel : ViewModel() {
 
     private var currentPage = 1
 
+    private var maxPages = 1
+
     init {
         load()
     }
@@ -25,6 +27,7 @@ class EpisodesViewModel : ViewModel() {
         _stateEpisode.value = EpisodesState.Loading
         _stateEpisode.value = when(val result = rickAndMortyService.episodes(currentPage)) {
             is NetworkResponse.Success -> EpisodesState.Succeed(episodes = result.body.results)
+                .also { maxPages = result.body.info.pages }
             else -> EpisodesState.Failed(error = "Echec au chargement des données")
         }
     }
@@ -33,12 +36,14 @@ class EpisodesViewModel : ViewModel() {
     fun loadMore() = viewModelScope.launch(Dispatchers.Main) {
         val page = currentPage + 1
         val currentState = _stateEpisode.value
-        if (currentState is EpisodesState.Succeed) {
-            _stateEpisode.value = EpisodesState.LoadingMore(currentState.episodes)
-            _stateEpisode.value = when (val result = rickAndMortyService.episodes(page)) {
-                is NetworkResponse.Success -> EpisodesState.Succeed(episodes = currentState.episodes + result.body.results)
-                    .also { currentPage = page }
-                else -> EpisodesState.Failed(error = "Echec au chargement des données.")
+        if (maxPages+1 > page) {
+            if (currentState is EpisodesState.Succeed) {
+                _stateEpisode.value = EpisodesState.LoadingMore(currentState.episodes)
+                _stateEpisode.value = when (val result = rickAndMortyService.episodes(page)) {
+                    is NetworkResponse.Success -> EpisodesState.Succeed(episodes = currentState.episodes + result.body.results)
+                        .also { currentPage = page }
+                    else -> EpisodesState.Failed(error = "Echec au chargement des données.")
+                }
             }
         }
     }
