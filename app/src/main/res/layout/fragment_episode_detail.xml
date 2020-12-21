@@ -54,6 +54,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.sackcentury.shinebuttonlib.ShineButton
+            android:id="@+id/siFavorite"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="303dp"
+            android:src="@android:color/darker_gray"
+            app:allow_random_color="true"
+            app:btn_color="@android:color/darker_gray"
+            app:btn_fill_color="#F44336"
+            app:layout_constraintBottom_toBottomOf="@+id/txtName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtEpisodeNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtEpisodeNumber"
+            app:siShape="@raw/heart" />
+
         <View
             android:id="@+id/separator"
             android:layout_width="match_parent"
@@ -104,22 +121,18 @@
             android:visibility="visible"
             app:constraint_referenced_ids="txtEpisodeName, txtEpisodeNumber, separator, txtAirDateLabel, txtAirDate, txtCharacterListLabel" />
 
-        <com.sackcentury.shinebuttonlib.ShineButton
-            android:id="@+id/siFavorite"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="303dp"
-            android:src="@android:color/darker_gray"
-            app:allow_random_color="true"
-            app:btn_color="@android:color/darker_gray"
-            app:btn_fill_color="#F44336"
-            app:layout_constraintBottom_toBottomOf="@+id/txtName"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCharacters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layoutManager="LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txtEpisodeNumber"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtEpisodeNumber"
-            app:siShape="@raw/heart" />
+            app:layout_constraintTop_toBottomOf="@+id/txtCharacterListLabel"
+            tools:context=".ui.characters.CharactersFragment"
+            tools:listitem="@layout/character_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

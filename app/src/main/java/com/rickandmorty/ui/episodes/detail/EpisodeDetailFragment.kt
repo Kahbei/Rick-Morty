@@ -11,12 +11,14 @@ import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.rickandmorty.R
 import com.rickandmorty.data.PreferenceRepository
 import com.rickandmorty.ui.episodes.detail.model.EpisodeDetailItem
 import com.rickandmorty.ui.episodes.detail.model.toEpisodeDate
 import com.sackcentury.shinebuttonlib.ShineButton
+import kotlinx.android.synthetic.main.fragment_episode_detail.*
 
 class EpisodeDetailFragment: Fragment() {
     private val episodeDetailViewModel: EpisodeDetailViewModel by viewModels {
@@ -25,6 +27,7 @@ class EpisodeDetailFragment: Fragment() {
     private var episodeId = 1
     private var episodeNum = ""
     private var episodeName = ""
+    private lateinit var rvCharacters: RecyclerView
 
     private val args: EpisodeDetailFragmentArgs by navArgs()
 
@@ -37,6 +40,7 @@ class EpisodeDetailFragment: Fragment() {
         episodeId = args.episodeId
         episodeName = args.episodeName
         episodeNum = args.episodeNum
+        rvCharacters = view.findViewById(R.id.rvCharacters)
 
         loadDefaultValues(view)
         return view
