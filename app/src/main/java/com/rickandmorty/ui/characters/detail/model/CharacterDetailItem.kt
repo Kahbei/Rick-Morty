@@ -59,7 +59,7 @@ private fun String.toGenderEnum(): CharacterDetailItem.Gender = try {
 
 /**
  * Parse une date en string -> format date
-*/
+ */
 
 private fun String.toDate(): Date? {
     val format = SimpleDateFormat("MMM d, yyyy", Locale.US)

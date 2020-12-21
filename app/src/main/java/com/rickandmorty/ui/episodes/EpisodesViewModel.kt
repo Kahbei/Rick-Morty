@@ -15,7 +15,7 @@ class EpisodesViewModel : ViewModel() {
     private val _stateEpisode: MutableLiveData<EpisodesState> = MutableLiveData(EpisodesState.Loading)
     val stateEpisode: LiveData<EpisodesState> = _stateEpisode
 
-    private var currentPage = 1
+    private var currentPage = 1     //
 
     private var maxPages = 1
 
@@ -23,6 +23,7 @@ class EpisodesViewModel : ViewModel() {
         load()
     }
 
+    //function to load the episodes in the list from the first page of the web API
     private fun load() = viewModelScope.launch(Dispatchers.Main) {
         _stateEpisode.value = EpisodesState.Loading
         _stateEpisode.value = when(val result = rickAndMortyService.episodes(currentPage)) {
@@ -32,7 +33,8 @@ class EpisodesViewModel : ViewModel() {
         }
     }
 
-    //Ici Vincent, là ! là !
+    //function to keep loading the episodes in the list page by page from the web API
+    //if it reaches the final page it will stop loading more episodes
     fun loadMore() = viewModelScope.launch(Dispatchers.Main) {
         val page = currentPage + 1
         val currentState = _stateEpisode.value
@@ -49,6 +51,7 @@ class EpisodesViewModel : ViewModel() {
     }
 }
 
+//use to know if it needs to load more episodes, if ihe loading succeeded or if it failed
 sealed class EpisodesState {
     object Loading : EpisodesState()
     data class LoadingMore(val episodes: List<EpisodeModel>) : EpisodesState()

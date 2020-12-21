@@ -14,6 +14,7 @@ import retrofit2.http.Query
 
 interface RickAndMortyService {
 
+    // Set-up the api call
     companion object {
         fun build(): RickAndMortyService {
             val retrofit = Retrofit.Builder()
@@ -26,13 +27,16 @@ interface RickAndMortyService {
         }
     }
 
+    /**
+     * These functions will get a page contained a list of character or episode. If an id is specified, it will display the character following the id
+     */
+
     @GET("character/")
     suspend fun characters(@Query("page") page: Int): NetworkResponse<Response<CharacterModel>, ErrorResponse>
 
     @GET("character/{id}")
     suspend fun character(@Path("id") id: Int): NetworkResponse<CharacterModel, ErrorResponse>
 
-    // TODO Implementer la méthode pour récupérer les informations d'un épisode
     @GET("episode/{id}")
     suspend fun episode(@Path("id") id: Int): NetworkResponse<EpisodeModel, ErrorResponse>
 
