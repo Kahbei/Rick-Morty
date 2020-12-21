@@ -27,7 +27,7 @@ class CharacterDetailViewModel(
                 CharacterState.Succeed(
                     characterDetail = result.body.toItem(
                         episode,
-                        preferenceRepository.isFavorites(id)
+                        preferenceRepository.isCharacterFavorites(id)
                     )
                 )
             }
@@ -38,7 +38,7 @@ class CharacterDetailViewModel(
     fun favorite(id: Int, isFavorite: Boolean) {
         _state.value = when (val state = _state.value) {
             is CharacterState.Succeed -> {
-                preferenceRepository.setFavorite(id, isFavorite).let {
+                preferenceRepository.setCharacterFavorite(id, isFavorite).let {
                     CharacterState.Succeed(state.characterDetail.copy(isFavorite = isFavorite))
                 }
             }
