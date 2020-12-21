@@ -32,7 +32,7 @@ class EpisodesViewModel : ViewModel() {
         }
     }
 
-    //Ici Vincent, là ! là !
+    //Ici Vincent, là ! là ! test
     fun loadMore() = viewModelScope.launch(Dispatchers.Main) {
         val page = currentPage + 1
         val currentState = _stateEpisode.value
