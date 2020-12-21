@@ -73,6 +73,7 @@ class EpisodeDetailFragment: Fragment() {
         episodeDetailViewModel.load(episodeId)
     }
 
+    // Will populate each elements that will need to get data from the service
     private fun populate(episodeDetail: EpisodeDetailItem, view: View) {
         view.findViewById<TextView>(R.id.txtAirDate).text = episodeDetail.air_date?.toEpisodeDate()
         view.findViewById<ShineButton>(R.id.siFavorite).apply {
