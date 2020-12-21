@@ -13,11 +13,13 @@ data class EpisodeDetailItem(
     val isFavorite: Boolean
 )
 
+//transform the date format from us to fr
 fun Date.toEpisodeDate(): String {
     val format = SimpleDateFormat("dd/MM/yy", Locale.US)
     return format.format(this)
 }
 
+//giving some informations to an episode
 fun EpisodeModel.toItem(isFavorite: Boolean) =
     EpisodeDetailItem(
         id = id,
@@ -27,6 +29,7 @@ fun EpisodeModel.toItem(isFavorite: Boolean) =
         isFavorite = isFavorite
     )
 
+//other date format
 private fun String.toDate(): Date? {
     val format = SimpleDateFormat("MMM d, yyyy", Locale.US)
     return try {
