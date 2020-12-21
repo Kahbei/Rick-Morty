@@ -10,7 +10,7 @@ data class EpisodeDetailItem(
     val episode_num: String,
     val episode_name: String,
     val air_date: Date?,
-    val isFavorite: Boolean
+    val isFavorite: Boolean,
 )
 
 fun Date.toEpisodeDate(): String {

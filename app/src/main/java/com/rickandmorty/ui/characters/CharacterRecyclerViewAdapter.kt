@@ -18,16 +18,17 @@ class CharacterRecyclerViewAdapter(
     private val onItemClick: OnClickItem,
 ) : RecyclerView.Adapter<CharacterRecyclerViewAdapter.ViewHolder>() {
 
+    //return the current holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.character_item, parent, false)
         return ViewHolder(view)
     }
 
+    //add data to specific holder object
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.main.setOnClickListener {
-            // TODO Décommenter après avoir ajouter le nom du personnage
             holder.name.transitionName = "name"
             holder.image.transitionName = "image"
             onItemClick(item, holder.name to holder.image)

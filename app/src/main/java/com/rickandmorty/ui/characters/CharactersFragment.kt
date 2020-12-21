@@ -67,7 +67,6 @@ class CharactersFragment : Fragment() {
                 views.first to views.first.transitionName,
                 views.second to views.second.transitionName
             )
-            // TODO Ouvrir le détail du personnage (attention, il faut passer l'objet extras en paramètre)
             findNavController().navigate(CharactersFragmentDirections.actionNavigationEpisodesToNavigationChatacter(character.id, character.name, character.image), extras)
         }
 
@@ -75,7 +74,6 @@ class CharactersFragment : Fragment() {
         rvCharacters.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    // TODO Charger la page suivante des personnages
                     charactersViewModel.loadMore()
                 }
             }

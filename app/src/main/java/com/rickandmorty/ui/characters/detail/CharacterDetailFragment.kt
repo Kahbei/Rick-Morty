@@ -92,6 +92,7 @@ class CharacterDetailFragment : Fragment() {
                 characterDetail.status.toString(),
                 characterDetail.species
             )
+            //return an image based on the status of the character
             val status = when (characterDetail.status) {
                 Alive -> R.color.statusAlive to R.drawable.bg_alive
                 Dead -> R.color.statusDead to R.drawable.bg_dead
@@ -100,6 +101,7 @@ class CharacterDetailFragment : Fragment() {
             setTextColor(ContextCompat.getColor(requireContext(), status.first))
             setBackgroundResource(status.second)
         }
+        //return an image based on the gender of the character
         val iconGender = when (characterDetail.gender) {
             Female -> R.drawable.ic_female
             Male -> R.drawable.ic_male

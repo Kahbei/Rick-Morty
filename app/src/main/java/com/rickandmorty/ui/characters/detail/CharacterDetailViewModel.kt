@@ -35,6 +35,7 @@ class CharacterDetailViewModel(
         }
     }
 
+    //add an character to favorite one
     fun favorite(id: Int, isFavorite: Boolean) {
         _state.value = when (val state = _state.value) {
             is CharacterState.Succeed -> {
