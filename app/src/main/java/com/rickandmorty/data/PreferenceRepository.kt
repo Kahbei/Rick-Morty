@@ -11,7 +11,10 @@ class PreferenceRepository(
     )
 ) {
 
-    // TODO Utiliser les sharedPreferences pour sauvegarder et récupérer le favori
+    /**
+     * These functions will save and display if a character or an episode is on favorite or not, it's saved local
+     */
+
     fun setCharacterFavorite(characterId: Int, isFavorite: Boolean) =
         sharedPreferences.edit().putBoolean("character-$characterId-isfavorite", isFavorite).apply()
 
