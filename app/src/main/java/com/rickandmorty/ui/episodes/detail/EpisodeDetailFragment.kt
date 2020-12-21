@@ -14,14 +14,13 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.rickandmorty.R
 import com.rickandmorty.data.PreferenceRepository
-import com.rickandmorty.data.episodesPreference
 import com.rickandmorty.ui.episodes.detail.model.EpisodeDetailItem
 import com.rickandmorty.ui.episodes.detail.model.toEpisodeDate
 import com.sackcentury.shinebuttonlib.ShineButton
 
 class EpisodeDetailFragment: Fragment() {
     private val episodeDetailViewModel: EpisodeDetailViewModel by viewModels {
-        EpisodeDetailViewModelFactory(episodesPreference(requireContext()))
+        EpisodeDetailViewModelFactory(PreferenceRepository(requireContext()))
     }
     private var episodeId = 1
     private var episodeNum = ""
