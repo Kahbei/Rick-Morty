@@ -23,6 +23,7 @@ class CharactersViewModel : ViewModel() {
         load()
     }
 
+    //function to load the characters in the list from the first page of the web API
     private fun load() = viewModelScope.launch(Dispatchers.Main) {
         _state.value = CharactersState.Loading
         _state.value = when(val result = rickAndMortyService.characters(currentPage)) {
@@ -34,6 +35,8 @@ class CharactersViewModel : ViewModel() {
         }
     }
 
+    //function to keep loading the characters in the list page by page from the web API
+    //if it reaches the final page it will stop loading more characters
     fun loadMore() = viewModelScope.launch(Dispatchers.Main) {
         val page = currentPage + 1
         val currentState = _state.value
@@ -50,6 +53,7 @@ class CharactersViewModel : ViewModel() {
     }
 }
 
+//use to know if it needs to load more characters, if ihe loading succeeded or if it failed
 sealed class CharactersState {
     object Loading : CharactersState()
     data class LoadingMore(val characters: List<CharacterModel>) : CharactersState()
